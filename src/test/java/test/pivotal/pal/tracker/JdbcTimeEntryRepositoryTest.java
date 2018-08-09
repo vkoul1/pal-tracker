@@ -156,4 +156,5 @@ public class JdbcTimeEntryRepositoryTest {
         Map<String, Object> foundEntry = jdbcTemplate.queryForMap("Select count(*) count from time_entries where id = ?", 999);
         assertThat(foundEntry.get("count")).isEqualTo(0L);
     }
+
 }

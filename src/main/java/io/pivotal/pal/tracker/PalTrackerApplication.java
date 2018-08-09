@@ -22,6 +22,11 @@ public class PalTrackerApplication {
     }
 
     @Bean
+    TimeEntryRepository timeEntryRepo() {
+        return new JdbcTimeEntryRepository();
+    }
+
+    @Bean
     public ObjectMapper jsonObjectMapper() {
         ObjectMapper build = Jackson2ObjectMapperBuilder.json()
                 .serializationInclusion(JsonInclude.Include.NON_NULL) // Don’t include null values
