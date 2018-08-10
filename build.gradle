@@ -15,15 +15,18 @@ dependencies {
     compile("com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.9.1")
     compile("org.springframework.boot:spring-boot-starter-jdbc")
     compile("mysql:mysql-connector-java:6.0.6")
+    compile("org.springframework.boot:spring-boot-starter-actuator")
     testCompile("org.springframework.boot:spring-boot-starter-test")
 }
 
 bootRun.environment([
         "WELCOME_MESSAGEE": "ola",
+        "MANAGEMENT_SECURITY_ENABLED": false,
         "SPRING_DATASOURCE_URL": "jdbc:mysql://localhost:3306/tracker_dev?user=tracker&useSSL=false&useTimezone=true&serverTimezone=UTC&useLegacyDatetimeCode=false",
 ])
 test.environment([
         "WELCOME_MESSAGE": "Hello from test",
+        "MANAGEMENT_SECURITY_ENABLED": false,
         "SPRING_DATASOURCE_URL": "jdbc:mysql://localhost:3306/tracker_test?user=tracker&useSSL=false&useTimezone=true&serverTimezone=UTC&useLegacyDatetimeCode=false",
 ])
 
@@ -36,4 +39,7 @@ flyway {
 
 task testMigrate(type: FlywayMigrateTask) {
     url = "jdbc:mysql://localhost:3306/tracker_test?user=tracker&useSSL=false&useTimezone=true&serverTimezone=UTC&useLegacyDatetimeCode=false"
+}
+springBoot {
+    buildInfo()
 }

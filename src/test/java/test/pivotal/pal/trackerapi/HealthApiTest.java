@@ -36,3 +36,4 @@ public class HealthApiTest {
         assertThat(healthJson.read("$.diskSpace.status", String.class)).isEqualTo("UP");
     }
 }
+
